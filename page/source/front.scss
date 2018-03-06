@@ -1,0 +1,101 @@
+html,body{
+  padding:0px;
+  margin:0px;
+  font-family:"Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
+}
+
+/* 整体排布 */
+#top{
+  background-repeat: repeat;
+  height:160px;
+  background-color:#33363b; }
+
+#middle{
+  min-height:1200px;
+}
+
+#bottom{
+  height:150px;
+  background-color:gray;
+  color:white;
+  padding-top:30px;
+  text-align:center;
+  border-top:1px solid black; }
+
+/* wrapper 和 container */
+/*  width<=300 */
+@media screen and (max-width: 300px) {
+  .container{ width:300px; margin:auto; }
+  .wrapper{  width:300px; } 
+}
+/*  width>=300 */
+@media screen and (min-width: 300px) {
+  .container{ width:100%; margin:auto; }
+  .wrapper{  width:100%; } 
+}
+/*  width>=700 */
+@media screen and (min-width: 700px){
+  .container{ width:600px; margin:auto; }
+  .wrapper{ width:100%;}
+}
+/*  width>=1200 */
+@media screen and (min-width: 1200px) {
+  .container{ width:800px; margin:auto; }
+  .wrapper{ width:100%; } 
+}  
+/* style of elements in header */
+div#header_top{
+  color:white;
+  height:120px;
+}
+div#header_top h1{
+  margin:0px;
+  display:inline-block;
+  vertical-align: middle;
+  margin:0 auto;
+}
+/* use help to make vertical-align valid */
+.help{
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+nav{
+  background-color: #454e5c;
+  overflow: hidden;
+}
+
+nav ul{
+  margin:8px;
+  padding:0;
+  text-align: justify;
+}
+nav ul li{
+  display:inline-block;
+  margin:0 3px 0 3px;
+}
+nav ul li a{
+  color:white;
+  font-size:18px;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.bg_color_0 { background-color: #fd7e14}
+.bg_color_1 { background-color: #dc3545}
+.bg_color_2 { background-color: #dc3545}
+.bg_color_3 { background-color: #e83e8c}
+.bg_color_4 { background-color: #6610f2}
+.bg_color_5 { background-color: #6f42c1}
+.bg_color_6 { background-color: #007bff}
+.bg_color_7 { background-color: #007bff}
+.bg_color_8 { background-color: #17a2b8}
+.bg_color_9 { background-color: #17a2b8}
+.bg_color_10{ background-color: #28a745}
+.bg_color_11{ background-color: #28a745}
+.bg_color_12{ background-color: #6c757d}
+.bg_color_13{ background-color: #6c757d}
+.bg_color_14{ background-color: #343a40}
+.bg_color_15{ background-color: #343a40}

@@ -1,0 +1,99 @@
+$blue:#2d78f4;
+$pink:#e83e8c;
+
+.article_container{
+  margin:auto;
+  display:grid;
+  width:1200px;
+  height:800px;
+  grid-template: {
+    columns: 1fr 1fr;
+    rows: 1fr 14fr;
+  }
+  grid-gap:1rem;
+}
+
+div#content,textarea{
+    margin: 0;
+    padding: 0;
+    font-family:"Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
+}
+
+@mixin item($left,$right,$top,$bottom){
+  grid-column-start : $left  ;
+  grid-column-end   : $right ;
+  grid-row-start    : $top   ;
+  grid-row-end      : $bottom;
+  border: 2px black solid;
+}
+//#article_item_0{ @include item(1,2,1,2);}
+//#article_item_1{ @include item(2,3,1,2);}
+//#article_item_2{ @include item(1,2,2,3);}
+//#article_item_3{ @include item(2,3,2,3);}
+#article_item_ {
+  &0 { @include item(1,2,1,2);}
+  &1 { @include item(2,3,1,2);}
+  &2 { @include item(1,2,2,3);}
+  &3 { @include item(2,3,2,3);}
+}
+
+/**///// title below
+/**/  //div#writing_item{ }
+/**/  @mixin wt{
+/**/    padding:0;
+/**/    border:none;
+/**/    margin:0;
+/**/  }
+/**/  div.writing_item{
+/**/    margin:auto;
+        margin-top:0px;
+        margin-bottom:0px;
+/**/    width:600px;
+/**/    display:grid;
+/**/    grid-gap:0;
+/**/    grid-template: {
+/**/      columns: 100px 400px 100px;
+/**/      rows   : 40px 20px;
+/**/    }
+/**/    padding:5px;
+/**/    input{
+          border-top:1px solid $pink;
+          border-bottom:1px solid $pink;
+          border-right:none;
+          border-left:none;
+          outline:none;padding:0px;
+          font-size:20px;
+        }
+/**/    input:focus{border:1px solid $pink;outline:none;}
+/**/    input.one{background-color:$pink;color:white;text-align: center;border:none;
+/**/          border-top-left-radius:     0.3em;
+/**/          border-bottom-left-radius:  0.3em;}
+/**/    button{background-color:$pink;@include wt;color:white;font-size:20px;
+/**/          border-top-right-radius:    0.3em;
+/**/          border-bottom-right-radius: 0.3em;}
+/**/        }
+/**/    button:focus{outline:none;}
+/**/        p{grid-column: 1/4;padding:0px;margin:0px;color:red;}
+/**/  
+/**///// title above 
+
+//////// keyword below
+.keyword_top{
+  margin:auto;
+  width:600px;
+  padding:0px;
+}
+.keyword_div{
+  float:left;
+  border:1px black solid;
+  margin:2px 4px 2px 4px;
+}
+.keyword_p{
+  color:black;
+  display:inline;
+}
+.keyword_button{ 
+  background-color:white;
+  display:inline;
+  border:none;
+}
