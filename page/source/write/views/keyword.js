@@ -1,11 +1,10 @@
 import React from 'react';
 
-class Keyword extends React.Component{
+class Keywords extends React.Component{
   constructor(props){
     super(props);
     this.state={
       text:'',
-      inputs:['12','34','56','78','90'],
     };
     this.delete=this.delete.bind(this);
     this.add=this.add.bind(this);
@@ -13,15 +12,15 @@ class Keyword extends React.Component{
   }
 
   delete(key){
-    let nextInputs=this.state.inputs.filter((item,index)=>key!==index);
-    this.setState({inputs:nextInputs});
-    console.log(this.state.inputs);
+    let nextInputs=this.props.textArray.filter((item,index)=>key!==index);
+    //this.setState({inputs:nextInputs});
+    this.props.write(nextInputs);
   }
 
   add(){
-    let nextInputs=this.state.inputs.concat([this.state.text]);
-    this.setState({inputs:nextInputs});
-    console.log(this.state.inputs);
+    let nextInputs=this.props.textArray.concat([this.state.text]);
+    //this.setState({inputs:nextInputs});
+    this.props.write(nextInputs);
   }
 
   onChange(ev){
@@ -34,10 +33,10 @@ class Keyword extends React.Component{
       <div className='writing_item'>
         <input  className='one'  disable='disabled' defaultValue='keyword' name='keyword_span'/>
         <input  className='two'type='text' onChange={this.onChange} name='keyword_text'/>
-        <button className='three' onClick={this.add}>add</button>
+        <button className='three' onClick={this.add}>+</button>
       </div>
       <div className='keyword_top'>
-        {this.state.inputs.map( (val,key) => <div key={key} className='keyword_div'>
+        {this.props.textArray.map( (val,key) => <div key={key} className='keyword_div'>
           <p className='keyword_p'>{val}</p>
           <button className='keyword_button'style={pstyle} onClick={()=>this.delete(key)}>x</button>
         </div> )}
@@ -46,4 +45,18 @@ class Keyword extends React.Component{
   }
 }
 
-export default Keyword;
+import {connect} from 'react-redux';
+import {write}   from './../actions.js';
+
+const mapStoP = state => ({
+  textArray : state.write.keywords,
+});
+
+const mapDtoP = dispatch => ({
+  write : textArray => dispatch(write({
+    'key':'keywords',
+    'value':textArray,
+  }))
+});
+
+export default connect(mapStoP,mapDtoP)(Keywords);

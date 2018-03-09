@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link , Switch} from 'react-router-dom';
 // import my components
 import {view as Menu} from './menu'
 import {view as Article} from './article'
+import {view as Write} from './write';
 
 import './front.scss'
 
@@ -23,10 +24,9 @@ const Content = () => {
     ['/', 'home   '],
     ['' , 'myself '],
     ['' , 'read   '],
+    ['/app/write' , 'write'],
     ['' , 'game   '],
-    ['' , 'boring '],
     ['' , 'project'],
-    ['/hello' , 'hello'],
   ]
   return (
     <Router>
@@ -41,7 +41,8 @@ const Content = () => {
           </div>
         </nav>
         <Route exact path='/' component={Menu}/>
-        <Route path='/app/article/:id' component={Article}/>
+        <Route exact path='/app/article/:id' component={Article}/>
+        <Route path='/app/write' component={Write}/>
       </div>
     </Router>
   )
@@ -49,7 +50,7 @@ const Content = () => {
 
 const Footer = () => (
   <footer id='bottom' className='wrapper'>
-    <p>鄂ICP备17004043号-1</p>
+    <p>鄂ICP备17004043号</p>
     <p>copyright ncpocketmonster©20**~20**</p>
   </footer>
 )

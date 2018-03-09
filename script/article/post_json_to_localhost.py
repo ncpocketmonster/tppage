@@ -19,7 +19,7 @@ print(response.text)
 rootDir = '/home/whm/tp5page/script/article'
 jsonDir = os.path.join(rootDir,'json')
 responseDir = os.path.join(rootDir,'response')
-url = 'http://localhost/article'
+url = 'http://www.ncpocketmonster.com/api/article'
 
 def post_data_to_url(data,url,responseFileName):
   # 对于我们工作中的自己人,我们一般会使用别的验证,而不是csrf_token验证

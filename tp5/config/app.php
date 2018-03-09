@@ -8,11 +8,9 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
 // +----------------------------------------------------------------------
 // | 应用设置
 // +----------------------------------------------------------------------
-
 return [
     // 应用名称
     'app_name'               => '',
@@ -44,18 +42,16 @@ return [
     // 是否开启多语言
     'lang_switch_on'         => false,
     // 默认全局过滤方法 用逗号分隔多个
-    'default_filter'         => '',
+    'default_filter'         => 'htmlspecialchars',
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
     'class_suffix'           => false,
     // 控制器类后缀
     'controller_suffix'      => false,
-
     // +----------------------------------------------------------------------
     // | 模块设置
     // +----------------------------------------------------------------------
-
     // 默认模块名
     'default_module'         => 'index',
     // 禁止访问模块
@@ -76,11 +72,9 @@ return [
     'action_suffix'          => '',
     // 自动搜索控制器
     'controller_auto_search' => false,
-
     // +----------------------------------------------------------------------
     // | URL设置
     // +----------------------------------------------------------------------
-
     // PATHINFO变量名 用于兼容模式
     'var_pathinfo'           => 's',
     // 兼容PATH_INFO获取
@@ -121,19 +115,15 @@ return [
     'request_cache_expire'   => null,
     // 全局请求缓存排除规则
     'request_cache_except'   => [],
-
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => Env::get('think_path') . 'tpl/dispatch_jump.tpl',
     'dispatch_error_tmpl'    => Env::get('think_path') . 'tpl/dispatch_jump.tpl',
-
     // 异常页面的模板文件
     'exception_tmpl'         => Env::get('think_path') . 'tpl/think_exception.tpl',
-
     // 错误显示信息,非调试模式有效
     'error_message'          => '页面错误！请稍后再试～',
     // 显示错误信息
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
-
 ];

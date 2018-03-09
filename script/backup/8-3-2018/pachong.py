@@ -26,7 +26,7 @@ postData = {
 # 对于我们工作中的自己人,我们一般会使用别的验证,而不是csrf_token验证
 import json
 ddd = json.dumps(postData)
-response = requests.post('http://localhost/article',data=ddd)
+response = requests.post('http://www.ncpocketmonster.com/article',data=ddd)
 # 通过get请求返回的文本值
 with open('/home/whm/tp5page/script/pachong.html', 'w') as f:
   f.write(response.text)
