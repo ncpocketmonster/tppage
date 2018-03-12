@@ -9,7 +9,6 @@ export default (state=[],action) => {
       };
     case 'page':
       page = action.data;
-      console.log('reducer',page);
       return {...state,
         articles: [...state.articles],
         page:page,

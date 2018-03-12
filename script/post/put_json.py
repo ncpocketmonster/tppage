@@ -17,14 +17,14 @@ print(response.text)
 
 
 responseDir = os.path.join('','response')
-url = 'http://localhost/api/article'
+url = 'http://localhost/api/article/108'
 jsonObj = {
   "article_type" : "markdown",
   "content"      : "@@@@@@@",
   #"password"     : "17004043",
   "title"        : "123",
 }
-response = requests.post(url,data=json.dumps(jsonObj))
+response = requests.put(url,data=json.dumps(jsonObj))
 # 通过get请求返回的文本值
 with open('response.html', 'w') as f:
   f.write(response.text)

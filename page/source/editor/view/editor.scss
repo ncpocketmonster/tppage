@@ -1,0 +1,113 @@
+@mixin border_lb(){
+  border:none;
+  outline:none;
+  border-left   : 1px solid #e0e1e5;
+  border-bottom : 1px solid #e0e1e5;
+}
+
+@media screen and (min-width: 768px ) {
+  $left_width : 320px;
+  $top_height : 60px;
+  $left_page_button_width : ($left_width / 5);
+
+  //========== all
+  .editor_all{
+    overflow: hidden;
+    position:relative;
+    width : 100%  ;
+    height : 100% ;
+  }
+
+  //========== left part
+  .editor_left{
+    padding:0px;    
+    position: relative;
+    float:left;
+    width: 320px;
+
+    @include border_lb();
+    background-color: #fff;
+  }  
+
+  //========== right part
+  .editor_right{
+    padding-left : $left_width;
+  }
+
+  //========== item list
+  .list_ul{
+    padding:0px;
+    margin:0px;
+    border:none;
+  }
+  .editor_li{
+    list-style:none;
+    position: relative;
+    padding: 15px 20px;
+    @include border_lb();
+    overflow: hidden;
+  }
+
+  //========== top bar
+  .editor_top_bar_button{
+    width:50px;
+    height:100%;
+    border:none;
+    background-color : white;
+    @include border_lb();
+  }
+
+  //========== page
+  .editor_page{
+    height: $top_height;
+    line-height: $top_height;
+    position: relative;
+  }
+  .editor_page_button{
+    height : $top_height;
+    width  : $left_page_button_width;
+    margin:0px;
+    border:none;
+    @include border_lb();
+  }
+
+  //========== editor_editor
+  .editor_editor{
+    height:888px;
+  }
+
+  .editor_editor_outside{
+    float      : left    ;
+    display    : block   ;
+    width      : 49.9%   ;
+    height     : 99.9%   ;
+    overflow   : hidden  ;
+    margin     : auto    ;
+    @include    border_lb();
+  }
+  .editor_editor_inside{
+    width      : 100%    ;
+    height     : 100%    ;
+    overflow-y : scroll  ;
+    overflow-x : hidden  ;
+    word-break : breakAll;
+    border     : none    ;
+  }
+}
+
+.editor_all{
+  input{
+    @include border_lb();
+    :focus{
+      @include border_lb();
+    }
+  }
+}
+.border{
+  @include border_lb();
+}
+//input:focus{ border:none; outline:none; }
+.height{
+  height:888px;
+}
+

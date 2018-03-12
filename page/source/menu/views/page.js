@@ -34,8 +34,6 @@ class PPPP extends React.Component{
 
     let prePages  = thisPage-3<firstPage ? firstPage : thisPage-3;
     let postPages = thisPage+3>totalPage ? totalPage : thisPage+3;
-    console.log(totalPage,thisPage);
-    console.log(prePages,postPages);
 
     const bgColor = (item,thisPage) => ( item === thisPage ? {'backgroundColor':'blue'} : {'backgroundColor':'whire'});
 

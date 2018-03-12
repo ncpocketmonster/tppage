@@ -18,35 +18,45 @@ class Index
         return json($list);
     }
     public function read($id){
-        $content = Article::get($id);
-        return json($content);
+        $data = Article::get($id);
+        return json($data);
     }
     public function save(){
-        $request_json_string=file_get_contents('php://input');
-        $request_json_object=json_decode($request_json_string);
-        $keyNames=[ 'title', 'content', 'keyword', 'article_type', 'author','password'];
-        $article = new Article;
-        // check json data
-        foreach($keyNames as $k => $v){
-            if(!isset($request_json_object -> $v)){
-                return json(['status'=>false,'error'=>'json data wrong',$k=>$v])->code(404);
-            }else{
-                $article->$v=$request_json_object->$v;
-            }
+        $res = $this->filter_json();
+        // return false if there is not enough values
+        if( $res === false ){
+            return json(['error'=>'input wrong'])->code(500);
         }
-        $article->save();
-        // add data to the database
 
-        $checkHash = $this->authority($request_json_object);
-        return json(['check'=>$checkHash])->code(200);
+        $article = new Article;
+        // add default value
+        $article->author  = 'ncpm';
+        $article->keyword = 'ncpm';
+
+        // save data to database
+        $article->save($res);
+        $article->save();
+        // return main key(aid)
+        return json(['id'=>$article->aid])->code(200);
     }
     public function update($id){
-        return false;
-        return $id.'update';
+        $res = $this->filter_json();
+        // return false if there is not enough values
+        if( $res === false ){
+            return json(['error'=>'input wrong'])->code(500);
+        }
+
+        $article = Article::get($id);
+        // add default value
+        $article->author  = 'ncpm';
+        $article->keyword = 'ncpm';
+        $article->save($res);
+        return json(['id'=>$article->aid]);
     }
     public function delete($id){
-        return false;
-        return $id.'delete';
+        $article = Article::get($id);
+        $article->delete();
+        return json(['id'=>$article->id]);
     }
     public function authority(){
         $request_json_string=file_get_contents('php://input');
@@ -67,5 +77,22 @@ class Index
             #return ['query'=>$q,'hash'=>$hash,'check'=>$checked]; 
             #$q = Db::query("select password from user_password");
         }
+    }
+    public function filter_json(){
+        // necessary keys
+        $keyNames = [ 'title', 'content','article_type'] ;
+        $str      = file_get_contents( 'php://input' )   ;
+        $obj      = json_decode( $str )  ;
+        $result   = [];
+
+        // if no enough values ; return false
+        foreach($keyNames as $k => $v){
+            if(!isset($obj-> $v)){
+                return false;
+            }else{
+                $result[$v] = $obj->$v;
+            }
+        }
+        return $result;
     }
 }

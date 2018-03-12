@@ -1,12 +1,20 @@
 // import npm items 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link , Switch} from 'react-router-dom';
+import { 
+  BrowserRouter as Router, 
+  Route, 
+  Link , 
+  Switch
+} from 'react-router-dom';
 
 // import my components
 import {view as Menu} from './menu'
 import {view as Article} from './article'
-import {view as Write} from './write';
+//import {view as Write} from './write';
+
+// article_xxx
+import {view as Editor} from './editor';
 
 import './front.scss'
 
@@ -21,12 +29,12 @@ const Header = ({title}) => (
 
 const Content = () => {
   const urlArr = [
-    ['/', 'home   '],
-    ['' , 'myself '],
-    ['' , 'read   '],
-    ['/app/write' , 'write'],
-    ['' , 'game   '],
-    ['' , 'project'],
+    [ '/'           , 'home   '  ] , 
+    [ ''            , 'myself '  ] , 
+    [ '/app/editor' , 'editor'   ] , 
+    //[ '/app/write'  , 'write'    ] , 
+    [ ''            , 'game   '  ] , 
+    [ ''            , 'project'  ] , 
   ]
   return (
     <Router>
@@ -42,7 +50,8 @@ const Content = () => {
         </nav>
         <Route exact path='/' component={Menu}/>
         <Route exact path='/app/article/:id' component={Article}/>
-        <Route path='/app/write' component={Write}/>
+        {/*<Route path='/app/write' component={Write}/>*/}
+        <Route path='/app/editor' component={Editor}/>
       </div>
     </Router>
   )

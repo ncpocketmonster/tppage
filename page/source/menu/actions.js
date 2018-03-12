@@ -5,7 +5,6 @@ export const getIndex = () => dispatch => {
 }
 
 export const setPage = pageId => {
-  console.log(pageId);
   return {
     type:'page',
     data:pageId,

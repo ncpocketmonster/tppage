@@ -6,10 +6,8 @@ export const post = obj => dispatch => {
   const salt = '123!@!#asdf@:"><>'
   /*
   const hash = str => sha512( str + salt ).toString() ;
-  console.log('123',sha512('123').toString());
   let nextObj = obj;
   nextObj.hash =  hash(obj.password) ;
-  console.log(nextObj);
   */
 
   fetch(url.write.actionUrl,{

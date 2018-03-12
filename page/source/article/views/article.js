@@ -18,7 +18,6 @@ class Article extends React.Component{
   render(){
     let {'content':content,'title':title}= this.props;
     let splited_content = content.split(/[\r\n]+/gi);
-    console.log(this.props.type);
     let getMarkup = (text) => {
       const md = new Remarkable();
       return {__html:md.render(text)};
