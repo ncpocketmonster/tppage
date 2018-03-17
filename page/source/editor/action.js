@@ -1,5 +1,34 @@
 import {url} from '../const.js';
 
+// unchecked getCookie function, mabye it is wrong
+const getCookie = arr => {
+  let str = document.cookie;
+  let spstr = str.split(';');
+  let key='',value='';
+  let obj= {},result={};
+  for(let i in spstr){
+    [key,value] = spstr.split('=');
+    result[key] = value;
+  }
+  for(let i in arr){
+    key=arr[i];
+    if(obj[key]!==undefined){
+      result[key]=obj[key];
+    }
+    else{
+      return false;
+    }
+  }
+  return result;
+}
+
+const addUAndP = str => {
+  let obj = str ? JSON.parse(str) : {};
+  obj.username = localStorage.username;
+  obj.password = localStorage.password;
+  return JSON.stringify(obj);
+}
+
 /*
 get /api/article for example
 [ {
@@ -59,26 +88,44 @@ export const get = id => dispatch => {
   .then( d => dispatch({type:'get',data: dataToState(d)}) );
 };      
 
-export const post     = str => dispatch => {
-  fetch( url.article , {method:'POST',body:str})
+// tell the server to create a new file, 
+// then the server return the id of the new file,
+export const post     = input => dispatch => {
+  let str = addUAndP(input);
+  console.log(str);
+  fetch( url.article , {method:'POST',body:str,contentType:"application/json"})
   .then( resp => resp.json() )
-  .then( d => dispatch({type:'post',data:d}));
+  .then( d => dispatch({type:'post',data: d }));
 };  
 
-export const put      = (id,str) => dispatch => {
-  fetch( url.articleId(id),{method:'PUT',body:str} )
+export const put      = (id,input) => dispatch => {
+  let str = addUAndP(input);
+  fetch( url.articleId(id),{method:'PUT',body:str, } )
   .then( resp => resp.json() )
-  .then( d => dispatch({type:'put'}) );
+  .then( d => dispatch({'type':'put','data':d}) );
 }; 
 
 export const del      = id => dispatch => {
-  fetch( url.articleId(id),{method:'DELETE'} )
-  .then( resp => resp.json() )
-  .then( d => dispatch({type:'del'}) );
+  let str = addUAndP();
+  var r=confirm("Delete?");
+  if (r==true)
+  {
+    fetch( url.articleId(id),{method:'DELETE',body:str} )
+    .then( resp => resp.json() )
+    .then( d => dispatch({type:'del',data:{'aid':id}}) );
+  }
 };    
 
 // set key value
 export const sendData = data => ({
   type:'setKeyValue',
   data: data,
+})
+
+export const clear = () => ({
+  type : 'clear' ,
+})
+
+export const reverseItem = () => ({
+  type : 'reverseItem',
 })

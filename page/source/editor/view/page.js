@@ -33,6 +33,8 @@ class Page extends React.Component{
     let lastPage  = Math.ceil( length / step );
     let halfWidth = Math.floor( pageWidth / 2 );
 
+    const f = i => console.log('case:'+i);
+
     if( lastPage <= pageWidth ){
       arr = range( firstPage , lastPage );
     }

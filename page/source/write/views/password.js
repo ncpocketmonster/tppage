@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import sha512 from 'crypto-js/sha512';
 
 const Password = ({set,value}) => ( <div className='writing_item'>
         <input  className='one' disabled='disabled' defaultValue='password' name='password_span'/>

@@ -4,13 +4,11 @@ import thunkMiddleware from 'redux-thunk';
 //reducers
 import {reducer as menuReducer   } from './menu';
 import {reducer as articleReducer} from './article';
-import {reducer as writeReducer  } from './write';
 import {reducer as editorReducer } from './editor';
 
 const reducer = combineReducers({
   menu    : menuReducer    ,
   article : articleReducer , 
-  write   : writeReducer   , 
   editor  : editorReducer  , 
 });
 
@@ -25,19 +23,11 @@ const initialValue = {
     title         : 'nothing'   ,
     content       : 'nothing'   ,
   },
-  write:{
-    content       :'321'        ,
-    keywords      :['321']      ,
-    title         :'123'        ,
-    password      :'132'        ,
-    postState     :'nothing'    ,
-    postTime      :''           ,
-  },
   editor:{
     catelog       : []          ,
     firstPage     : 1           ,
     page          : 1           ,
-    pageWidth     : 7           ,
+    pageWidth     : 5           ,
     step          : 10          ,
 
     mode          : 'edit'      , // view or edit       
@@ -45,6 +35,10 @@ const initialValue = {
     title         : ''          ,
     type          : ''          ,
     content       : ''          ,
+
+    reverseItem   : false       ,
+    lockScroll    : false       ,
+    scrollTop     : 0           ,
   }
 };
 

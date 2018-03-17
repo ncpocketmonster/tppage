@@ -6,6 +6,11 @@ const url = {
   },
   'articleId' : id => ('/api/article/'+id),
   'article'   : '/api/article',
+  'login'     : '/api/login',
+  'route' :{
+    'article'   : '/app/article',
+    'login'     : '/app/login',
+  }
 };
 
 export {url};

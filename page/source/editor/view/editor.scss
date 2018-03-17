@@ -5,7 +5,11 @@
   border-bottom : 1px solid #e0e1e5;
 }
 
-@media screen and (min-width: 768px ) {
+@media screen and (min-width: 768px ){
+  
+}
+
+@media screen and (min-width: 1200px) {
   $left_width : 320px;
   $top_height : 60px;
   $left_page_button_width : ($left_width / 5);
@@ -49,12 +53,45 @@
   }
 
   //========== top bar
-  .editor_top_bar_button{
-    width:50px;
+  @mixin top_bar_button(){
     height:100%;
     border:none;
     background-color : white;
     @include border_lb();
+    padding : 0px;
+  }
+  $buttons_width : 450px;
+  .editor_top_bar{
+    position     : relative ;
+    height       : 60px     ;
+    overflow     : hidden   ;
+  }
+  .editor_top_bar_title{
+    height : 100%; 
+    padding-right : $buttons_width;
+  }
+  .editor_top_bar_buttons{
+    width    :  $buttons_width;
+    float    :  right   ;
+    position :  relative;
+    overflow :  hidden  ;
+  }
+  .editor_top_bar_button{
+    width:49px;
+    @include top_bar_button();
+    border-top   : 1px solid #e0e1e5;
+  }
+  .editor_top_bar_button2{
+    width:99px;
+    @include top_bar_button();
+    border-top   : 1px solid #e0e1e5;
+  }
+  .editor_top_bar_button_down{
+    width:49px;
+    transform: rotate(-180deg);
+    @include top_bar_button();
+    border-right : 1px solid #e0e1e5;
+    border-top   : 1px solid #e0e1e5;
   }
 
   //========== page
@@ -94,7 +131,6 @@
     border     : none    ;
   }
 }
-
 .editor_all{
   input{
     @include border_lb();

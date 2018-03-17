@@ -1,10 +1,13 @@
 <?php
 namespace app\article\controller;
 
+use think\Controller;
+use think\Request;
 use \app\article\model\Article;
+use \app\login\controller as Login;
 use \think\Db;
 
-class Index
+class Index extends Controller
 {
     public function index()
     {
@@ -22,6 +25,10 @@ class Index
         return json($data);
     }
     public function save(){
+        if(!$this->authority()){
+            return json(['error'=>'authority refused'])->code(401);
+        }
+
         $res = $this->filter_json();
         // return false if there is not enough values
         if( $res === false ){
@@ -31,15 +38,19 @@ class Index
         $article = new Article;
         // add default value
         $article->author  = 'ncpm';
-        $article->keyword = 'ncpm';
+        $article->keyword = 'null';
 
         // save data to database
         $article->save($res);
         $article->save();
         // return main key(aid)
-        return json(['id'=>$article->aid])->code(200);
+        return json($article)->code(200);
     }
     public function update($id){
+        if(!$this->authority()){
+            return json(['error'=>'authority refused'])->code(401);
+        }
+
         $res = $this->filter_json();
         // return false if there is not enough values
         if( $res === false ){
@@ -51,32 +62,24 @@ class Index
         $article->author  = 'ncpm';
         $article->keyword = 'ncpm';
         $article->save($res);
-        return json(['id'=>$article->aid]);
+        return json(['aid'=>$article->aid]);
     }
     public function delete($id){
+        if(!$this->authority()){
+            return json(['error'=>'authority refused'])->code(401);
+        }
+
         $article = Article::get($id);
         $article->delete();
-        return json(['id'=>$article->id]);
+        return json(['aid'=>$id]);
     }
     public function authority(){
-        $request_json_string=file_get_contents('php://input');
-        $object=json_decode($request_json_string);
-        # take password out from json and add salt
-        $password = $object->password.'123!@!#asdf@:"><>';
-        # hash password
-        $hash = hash('sha512',$password);
-        # search the database to find the password
-        $checked = Db::table('user_password')->where('password',$hash)->find();
-        # password wrong
-        if($checked === null){
-            return False;
-        }
-        # password correct
-        else{ 
-            return True;
-            #return ['query'=>$q,'hash'=>$hash,'check'=>$checked]; 
-            #$q = Db::query("select password from user_password");
-        }
+        $str = file_get_contents('php://input');
+        $obj = json_decode($str);
+        $username = $obj->username;
+        $password = $obj->password;
+        $lgi = new Login\Index;
+        return $lgi->verify($username,$password);
     }
     public function filter_json(){
         // necessary keys

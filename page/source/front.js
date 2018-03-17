@@ -9,11 +9,9 @@ import {
 } from 'react-router-dom';
 
 // import my components
-import {view as Menu} from './menu'
+import {view as Menu   } from './menu'
 import {view as Article} from './article'
-//import {view as Write} from './write';
-
-// article_xxx
+import {view as Login  } from './login'
 import {view as Editor} from './editor';
 
 import './front.scss'
@@ -30,28 +28,35 @@ const Header = ({title}) => (
 const Content = () => {
   const urlArr = [
     [ '/'           , 'home   '  ] , 
-    [ ''            , 'myself '  ] , 
+    [ '/app/read'   , 'read'     ] , 
     [ '/app/editor' , 'editor'   ] , 
-    //[ '/app/write'  , 'write'    ] , 
-    [ ''            , 'game   '  ] , 
-    [ ''            , 'project'  ] , 
+    [ '/app/login'  , 'login'    ] , 
   ]
+  const RouteItems = () => (<div>
+    <Route exact path = '/'                component = { ()=>null} />
+    <Route exact path = '/app/read'        component = { Menu    } />
+    <Route exact path = '/app/article/:id' component = { Article } />
+    <Route       path = '/app/editor'      component = { Editor  } />
+    <Route exact path = '/app/login'       component = { Login   } />
+  </div>)
+
+  const NavItems = () => (
+    <nav className ='wrapper'>
+      <div className ='container'>
+        <ul> { urlArr.map( (item,index) => (
+          <li key={index}> 
+          <Link to={item[0]}> {item[1]}</Link> 
+          </li>) ) }
+        </ul>
+      </div>
+    </nav>
+  )
+
   return (
     <Router>
       <div id='middle'>
-        <nav className ='wrapper'>
-          <div className ='container'>
-            <ul>
-              { urlArr.map( (item,index) => (
-                <li key={index}> <Link to={item[0]}> {item[1]}</Link> </li>
-              ) ) }
-            </ul>
-          </div>
-        </nav>
-        <Route exact path='/' component={Menu}/>
-        <Route exact path='/app/article/:id' component={Article}/>
-        {/*<Route path='/app/write' component={Write}/>*/}
-        <Route path='/app/editor' component={Editor}/>
+        <NavItems />
+        <RouteItems />
       </div>
     </Router>
   )
