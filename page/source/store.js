@@ -38,7 +38,6 @@ const initialValue = {
 
     reverseItem   : false       ,
     lockScroll    : false       ,
-    scrollTop     : 0           ,
   }
 };
 

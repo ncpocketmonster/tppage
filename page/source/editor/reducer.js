@@ -81,6 +81,10 @@ export default (state={},action) => {
         'catelog'     : nextCatelog           ,
         'page'        : nextPage ,
       }
+    case('lockScroll'):
+      return {...state,
+        lockScroll : !state.lockScroll,
+      }
     default:
       return state;
   }

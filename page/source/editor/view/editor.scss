@@ -1,41 +1,37 @@
 @mixin border_lb(){
   border:none;
   outline:none;
-  border-left   : 1px solid #e0e1e5;
-  border-bottom : 1px solid #e0e1e5;
+  border-left   : 1px solid black;
+  border-bottom : 1px solid black;
 }
-
-@media screen and (min-width: 768px ){
+@media screen and (max-width: 768px ){
   
 }
-
-@media screen and (min-width: 1200px) {
-  $left_width : 320px;
+/*
+@media screen and (min-width: 768px ){
+  $left_width:200px;
   $top_height : 60px;
   $left_page_button_width : ($left_width / 5);
-
-  //========== all
   .editor_all{
     overflow: hidden;
     position:relative;
     width : 100%  ;
     height : 100% ;
-  }
-
-  //========== left part
+  } 
   .editor_left{
     padding:0px;    
     position: relative;
     float:left;
     width: 320px;
+    height:1200px;
 
     @include border_lb();
     background-color: #fff;
+    border-left:none;
   }  
-
-  //========== right part
   .editor_right{
     padding-left : $left_width;
+    height:1200px;
   }
 
   //========== item list
@@ -65,10 +61,16 @@
     position     : relative ;
     height       : 60px     ;
     overflow     : hidden   ;
+    border-bottom : solid 1px black;
+    border-top : solid 1px black;
   }
   .editor_top_bar_title{
     height : 100%; 
     padding-right : $buttons_width;
+    input{
+      border-top:none;
+      border-bottom:none;
+    }
   }
   .editor_top_bar_buttons{
     width    :  $buttons_width;
@@ -79,23 +81,38 @@
   .editor_top_bar_button{
     width:49px;
     @include top_bar_button();
-    border-top   : 1px solid #e0e1e5;
+    border-top:none;
+    border-bottom:none;
   }
   .editor_top_bar_button2{
     width:99px;
     @include top_bar_button();
-    border-top   : 1px solid #e0e1e5;
+    border-top:none;
+    border-bottom:none;
   }
   .editor_top_bar_button_down{
     width:49px;
     transform: rotate(-180deg);
     @include top_bar_button();
-    border-right : 1px solid #e0e1e5;
-    border-top   : 1px solid #e0e1e5;
+    border-right : 1px solid black;
+    border-top:none;
+    border-bottom:none;
+  }
+  #title_input{
+    border-top:none;
+    border-bottom:none;
+  }
+  .editor_top_bar_view{
+    display:none;
+  }
+  .editor_top_bar_edit{
+    display:none;
   }
 
   //========== page
   .editor_page{
+    border-bottom:1px solid black;
+    border-top:1px solid black;
     height: $top_height;
     line-height: $top_height;
     position: relative;
@@ -106,17 +123,220 @@
     margin:0px;
     border:none;
     @include border_lb();
+    border-bottom:none;
+    border-left:none;
+    border-right:1px solid black;
+  }
+  .editor_page_button_last{
+    height : $top_height;
+    width  : $left_page_button_width;
+    margin:0px;
+    border:none;
+    @include border_lb();
+    border-bottom:none;
+    border-left:none;
+    border-right:1px solid black;
+    border-right:none;
   }
 
   //========== editor_editor
   .editor_editor{
-    height:888px;
+    //height:100%;
+    height:1139px;
   }
 
   .editor_editor_outside{
     float      : left    ;
     display    : block   ;
-    width      : 49.9%   ;
+    width      : 70%   ;
+    height     : 99.9%   ;
+    overflow   : hidden  ;
+    margin     : auto    ;
+    @include    border_lb();
+    border-right:1px solid black;
+  }
+  .editor_editor_inside{
+    width      : 100%    ;
+    height     : 100%    ;
+    overflow-y : scroll  ;
+    overflow-x : hidden  ;
+    word-break : breakAll;
+    border     : none    ;
+  }
+  .editor_all{
+  height:1200px;
+  input{
+    @include border_lb();
+    :focus{
+      @include border_lb();
+    }
+  }
+  }
+  .border{
+    @include border_lb();
+  }
+  //input:focus{ border:none; outline:none; }
+  .height{
+    height:888px;
+  }
+
+}
+*/
+//@media screen and (min-width: 1200px) {
+  $left_width : 320px;
+  $top_height : 60px;
+  $left_page_button_width : ($left_width / 5);
+
+  //========== all
+  .editor_all{
+    overflow: hidden;
+    position:relative;
+   // width : 100%  ;
+    width: 1900px;
+    height : 100% ;
+    border-right:1px black solid;
+    height:1200px;
+    input{
+    @include border_lb();
+    :focus{
+      @include border_lb();
+    }
+  }
+
+  //========== left part
+  .editor_left{
+    padding:0px;    
+    position: relative;
+    float:left;
+    width: 320px;
+    height:1200px;
+
+    @include border_lb();
+    background-color: #fff;
+    border-left:none;
+  }  
+
+  //========== right part
+  .editor_right{
+    padding-left : $left_width;
+    height:1200px;
+  }
+
+  //========== item list
+  .list_ul{
+    padding:0px;
+    margin:0px;
+    border:none;
+  }
+  .editor_li{
+    list-style:none;
+    position: relative;
+    padding: 15px 20px;
+    @include border_lb();
+    overflow: hidden;
+  }
+
+  //========== top bar
+  @mixin top_bar_button(){
+    height:100%;
+    border:none;
+    //background-color : white;
+    @include border_lb();
+    padding : 0px;
+  }
+  $buttons_width : 450px;
+  .editor_top_bar{
+    position     : relative ;
+    height       : 60px     ;
+    overflow     : hidden   ;
+    border-bottom : solid 1px black;
+    border-top : solid 1px black;
+  }
+  .editor_top_bar_title{
+    height : 100%; 
+    padding-right : $buttons_width;
+    input{
+      border-top:none;
+      border-bottom:none;
+    }
+  }
+  .editor_top_bar_buttons{
+    width    :  $buttons_width;
+    float    :  right   ;
+    position :  relative;
+    overflow :  hidden  ;
+  }
+  .editor_top_bar_button{
+    width:49px;
+    @include top_bar_button();
+    border-top:none;
+    border-bottom:none;
+  }
+  .editor_top_bar_button2{
+    width:99px;
+    @include top_bar_button();
+    border-top:none;
+    border-bottom:none;
+  }
+  .editor_top_bar_button_down{
+    width:49px;
+    transform: rotate(-180deg);
+    @include top_bar_button();
+    border-right : 1px solid black;
+    border-top:none;
+    border-bottom:none;
+  }
+  #title_input{
+    border-top:none;
+    border-bottom:none;
+  }
+  .editor_top_bar_view{
+    display:none;
+  }
+  .editor_top_bar_edit{
+    display:none;
+  }
+
+  //========== page
+  .editor_page{
+    border-bottom:1px solid black;
+    border-top:1px solid black;
+    height: $top_height;
+    line-height: $top_height;
+    position: relative;
+  }
+  .editor_page_button{
+    height : $top_height;
+    width  : $left_page_button_width;
+    margin:0px;
+    border:none;
+    @include border_lb();
+    border-bottom:none;
+    border-left:none;
+    border-right:1px solid black;
+  }
+  .editor_page_button_last{ 
+    height : $top_height;
+    width  : $left_page_button_width;
+    margin:0px;
+    border:none;
+    @include border_lb();
+    border-bottom:none;
+    border-left:none;
+    border-right:1px solid black;
+    border-right:none;
+  }
+
+  //========== editor_editor
+  .editor_editor{
+    //height:100%;
+    height:1139px;
+  }
+
+  .editor_editor_outside{
+    float      : left    ;
+    display    : block   ;
+    width      : 46%   ;
     height     : 99.9%   ;
     overflow   : hidden  ;
     margin     : auto    ;
@@ -130,20 +350,18 @@
     word-break : breakAll;
     border     : none    ;
   }
-}
-.editor_all{
-  input{
-    @include border_lb();
-    :focus{
-      @include border_lb();
-    }
-  }
-}
-.border{
-  @include border_lb();
-}
-//input:focus{ border:none; outline:none; }
-.height{
-  height:888px;
-}
 
+  }
+  .border{
+    @include border_lb();
+  }
+  //input:focus{ border:none; outline:none; }
+  .height{
+    height:888px;
+  }
+//}
+
+
+.redBack{
+  background-color: red;
+}

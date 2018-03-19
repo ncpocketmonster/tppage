@@ -32,7 +32,8 @@ let obj = {
   'username' : username,
   'password' : hash1,
 }
-let url = 'http://localhost/api/login';
+//let url = 'http://localhost/api/login';
+let url = 'http://www.ncpocketmonster.com';
 
 
 let request = require('request');

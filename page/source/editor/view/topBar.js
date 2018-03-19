@@ -10,7 +10,7 @@ import {
 } from './../action.js';
 import './editor.scss';
 
-const TopBar = ({aid,title,content,type,setTitle,del,put,post,clear,reverseItem,reverseState}) => {
+const TopBar = ({aid,title,content,type,setTitle,del,put,post,clear,reverseItem,reverseState,setLock,lockScroll}) => {
   
   const makeStr = () => (JSON.stringify({
     'title'   : title   ,
@@ -25,6 +25,8 @@ const TopBar = ({aid,title,content,type,setTitle,del,put,post,clear,reverseItem,
   }));
 
   let reverseClassName = reverseState ? 'editor_top_bar_button_down' : 'editor_top_bar_button';
+
+  console.log(lockScroll);
   return (
   <div className='editor_top_bar'>
     <div className='editor_top_bar_buttons' >
@@ -33,13 +35,17 @@ const TopBar = ({aid,title,content,type,setTitle,del,put,post,clear,reverseItem,
       <button onClick = { () => clear( )                } className='editor_top_bar_button'  > 清空    </button> 
       <button onClick = { () => del ( aid )             } className='editor_top_bar_button'  > 删除    </button> 
       <button onClick = { () => reverseItem()           } className={reverseClassName     }  > 倒序    </button> 
-      <button onClick = { () => {}                      } className='editor_top_bar_button2' > 滚动锁定 </button> 
+      <button 
+        onClick = { setLock} 
+        className={ lockScroll  ? 'editor_top_bar_button2 redBack' : 'editor_top_bar_button2'}
+      > 滚动锁定 </button> 
     </div>
     <div className='editor_top_bar_title'>
       <input 
         type='text' 
         value={title} 
         onChange={setTitle} 
+        id='title_input'
         style={{
           height   : '100%' ,
           width    : '100%' ,
@@ -55,6 +61,7 @@ const mapStoP = state => ({
   type    : state.editor.type     , 
   aid     : state.editor.aid      , 
   reverseState : state.editor.reverseItem ,
+  lockScroll : state.editor.lockScroll,
 });
 
 const mapDtoP = dispatch => ({
@@ -64,6 +71,7 @@ const mapDtoP = dispatch => ({
   post        : (       str ) => dispatch( post       (       str ) ),
   clear       : (           ) => dispatch( clear      (           ) ),
   reverseItem : (           ) => dispatch( reverseItem(           ) ),
+  setLock     :   ()          => dispatch( { type:'lockScroll' }),
 });
 
 export default connect(mapStoP,mapDtoP)(TopBar);

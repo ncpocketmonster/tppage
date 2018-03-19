@@ -64,7 +64,7 @@ class Page extends React.Component{
     let stNormal = {'backgroundColor':'white'};
     let stFocus  = {'backgroundColor':'#eaf0fb'};
     const mapFunc = (item,index) => (<button 
-      className='editor_page_button'
+      className={ index === (pageWidth - 1) ? 'editor_page_button_last' : 'editor_page_button'}
       type='button' 
       key={index} 
       onClick={()=>this.props.setPage(item)} 

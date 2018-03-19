@@ -29,7 +29,6 @@ module.exports = {
       }
     ],
   },
-  /*
   plugins:[  
     new webpack.DefinePlugin({ // <-- 减少 React 大小的关键  
       'process.env': {  
@@ -39,5 +38,4 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(), //最小化一切  
     new webpack.optimize.AggressiveMergingPlugin()//合并块  
    ] 
-   */ 
 };
